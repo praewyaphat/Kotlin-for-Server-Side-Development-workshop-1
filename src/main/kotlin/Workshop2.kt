@@ -70,4 +70,18 @@ fun main() {
     println("   - เช่น: 'Laptop' จะถูก filter category -> filter price -> map price จากนั้น 'Smartphone' ถึงจะเริ่มทำกระบวนการเดียวกัน")
     println("   - จะไม่มีการสร้าง Collection กลางทาง ทำให้ประหยัดหน่วยความจำและเร็วกว่ามากสำหรับชุดข้อมูลขนาดใหญ่ เพราะทำงานกับข้อมูลทีละชิ้นและทำทุกขั้นตอนให้เสร็จในรอบเดียว")
     println("   - การคำนวณจะเกิดขึ้นเมื่อมี 'Terminal Operation' มาเรียกใช้เท่านั้น (ในที่นี้คือ .sum())")
+
+    println("--------------------------------------------------")
+    println("กลุ่มสินค้าตามราคา: ")
+    val totoalPrice = products.groupBy { product ->
+        when {
+            product.price <1000 -> "ต่ำกว่า 1000"
+            product.price in 1000.0..9999.99 -> "ราคา 1,000 - 9,999 บาท"
+            else -> "10,000 บาทขึ้นไป"
+        }
+    }
+    for ((range, item) in totoalPrice) {
+        println("กลุ่ม:  $range")
+        item.forEach { println("- (${it.name}) (${it.price}) ")}
+    }
 }
